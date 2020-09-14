@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -41,5 +42,14 @@ public class BowlingGameTest {
         List<Integer> hitPinsList = Stream.generate(() -> 10).limit(12).collect(Collectors.toList());
         int actual = bowlingGame.getTotalScore(hitPinsList);
         assertEquals(300, actual);
+    }
+
+    @Test
+    void should_throw_when_given_hits_are_not_enough() {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            BowlingGame bowlingGame = new BowlingGame();
+            int actual = bowlingGame.getTotalScore(Arrays.asList(10, 9));
+        });
+        assertEquals(exception.getMessage(), "input is not complete");
     }
 }

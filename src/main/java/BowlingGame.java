@@ -12,19 +12,21 @@ public class BowlingGame {
         }
 
         int totalScore = 0;
-        for (int frame = 1, index = 0; frame <= 10; ++frame, ++index) {
+        HitsRecord hitsRecord = new HitsRecord(hitPinsList);
+        for (int frame = 1; frame <= 10; ++frame) {
             int pins = 10;
-            int firstHit = hitPinsList.get(index);
+
+            int firstHit = hitsRecord.getNextHitPins();
             pins -= firstHit;
             if (pins == 0) {
-                totalScore += 10 + hitPinsList.get(index + 1) + hitPinsList.get(index + 2);
+                totalScore += 10 + hitsRecord.getBonusOn(2);
                 continue;
             }
 
-            int secondHit = hitPinsList.get(++index);
+            int secondHit = hitsRecord.getNextHitPins();
             pins -= secondHit;
             if (pins == 0) {
-                totalScore += 10 + hitPinsList.get(index + 1);
+                totalScore += 10 + hitsRecord.getBonusOn(1);
                 continue;
             }
             totalScore += firstHit + secondHit;
