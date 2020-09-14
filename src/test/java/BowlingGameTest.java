@@ -52,4 +52,12 @@ public class BowlingGameTest {
         });
         assertEquals(exception.getMessage(), "input is not complete");
     }
+
+    @Test
+    void should_return_correct_total_score() {
+        BowlingGame bowlingGame = new BowlingGame();
+        List<Integer> hitPinsList = Arrays.asList(10, 2, 3, 5, 5, 3, 7, 10, 3, 1, 8, 1, 3, 5, 2, 8, 3, 5);
+        int actual = bowlingGame.getTotalScore(hitPinsList);
+        assertEquals(109, actual);
+    }
 }
