@@ -5,6 +5,10 @@ public class BowlingGame {
         if (downPins == null) {
             throw new IllegalArgumentException("input should not be null");
         }
+
+        if (downPins.isEmpty()) {
+            throw new IllegalArgumentException("input should not be empty");
+        }
         return 0;
     }
 }
