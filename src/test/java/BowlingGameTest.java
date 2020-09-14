@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -22,5 +25,13 @@ public class BowlingGameTest {
             int actual = bowlingGame.getTotalScore(new ArrayList<>());
         });
         assertEquals(exception.getMessage(), "input should not be empty");
+    }
+
+    @Test
+    void should_return_0_when_calculate_given_0_hit_pins() {
+        BowlingGame bowlingGame = new BowlingGame();
+        List<Integer> hitPins = Stream.generate(() -> 0).limit(20).collect(Collectors.toList());
+        int actual = bowlingGame.getTotalScore(hitPins);
+        assertEquals(0, actual);
     }
 }
