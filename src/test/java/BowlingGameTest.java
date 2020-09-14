@@ -30,16 +30,16 @@ public class BowlingGameTest {
     @Test
     void should_return_0_when_calculate_given_0_hit_pins() {
         BowlingGame bowlingGame = new BowlingGame();
-        List<Integer> hitPins = Stream.generate(() -> 0).limit(20).collect(Collectors.toList());
-        int actual = bowlingGame.getTotalScore(hitPins);
+        List<Integer> hitPinsList = Stream.generate(() -> 0).limit(20).collect(Collectors.toList());
+        int actual = bowlingGame.getTotalScore(hitPinsList);
         assertEquals(0, actual);
     }
 
     @Test
     void should_return_300_when_calculate_given_full_hit_pins() {
         BowlingGame bowlingGame = new BowlingGame();
-        List<Integer> hitPins = Stream.generate(() -> 10).limit(12).collect(Collectors.toList());
-        int actual = bowlingGame.getTotalScore(hitPins);
+        List<Integer> hitPinsList = Stream.generate(() -> 10).limit(12).collect(Collectors.toList());
+        int actual = bowlingGame.getTotalScore(hitPinsList);
         assertEquals(300, actual);
     }
 }

@@ -12,20 +12,22 @@ public class BowlingGame {
         }
 
         int totalScore = 0;
-        int frame = 1;
-        int index = 0;
-        while (frame <= 10) {
+        for (int frame = 1, index = 0; frame <= 10; ++frame, ++index) {
             int pins = 10;
-            pins -= hitPinsList.get(index);
+            int firstHit = hitPinsList.get(index);
+            pins -= firstHit;
             if (pins == 0) {
                 totalScore += 10 + hitPinsList.get(index + 1) + hitPinsList.get(index + 2);
-            } else if (pins - hitPinsList.get(index + 1) == 0) {
-                totalScore += 10 + hitPinsList.get(++index + 1);
-            } else {
-                totalScore += hitPinsList.get(index) + hitPinsList.get(++index);
+                continue;
             }
-            frame++;
-            index++;
+
+            int secondHit = hitPinsList.get(++index);
+            pins -= secondHit;
+            if (pins == 0) {
+                totalScore += 10 + hitPinsList.get(index + 1);
+                continue;
+            }
+            totalScore += firstHit + secondHit;
         }
 
         return totalScore;
