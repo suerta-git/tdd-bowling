@@ -34,4 +34,12 @@ public class BowlingGameTest {
         int actual = bowlingGame.getTotalScore(hitPins);
         assertEquals(0, actual);
     }
+
+    @Test
+    void should_return_300_when_calculate_given_full_hit_pins() {
+        BowlingGame bowlingGame = new BowlingGame();
+        List<Integer> hitPins = Stream.generate(() -> 10).limit(12).collect(Collectors.toList());
+        int actual = bowlingGame.getTotalScore(hitPins);
+        assertEquals(300, actual);
+    }
 }
